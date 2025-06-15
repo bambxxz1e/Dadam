@@ -1,0 +1,239 @@
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* html,
+    body {
+      overflow-x: hidden;
+    } */
+
+    .box1 {
+      width: 887px;
+      height: 471px;
+      padding: 16px 8px;
+      margin: 242px auto 0 auto;
+      border-radius: 29.143px;
+      background: #F0F4F7;
+      box-shadow: 0px 4.857px 29.143px 0px rgba(112, 144, 176, 0.30);
+    }
+
+    .headPhone_img {
+      position: absolute;
+      top: 65px;
+      left: 100px;
+      width: 394px;
+      height: 328px;
+      width: 394.12px;
+      height: 328.643px;
+    }
+
+    .mic_img {
+      position: absolute;
+      left: 1361px;
+      width: 583px;
+      height: 437px;
+      top: 575px;
+      
+    }
+
+    .box2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 36.429px;
+      margin-left: 163.46px;
+    }
+
+    .mainText {
+      color: #000;
+      font-family: Pretendard, sans-serif;
+      font-size: 33px;
+      font-weight: 700;
+      text-align: center;
+      margin: 48.57px 0 51.43px 0;
+    }
+
+    #Text1_t,
+    #Text2_t,
+    #Text3_t {
+      color: #000;
+      font-family: Pretendard, sans-serif;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 36.43px;
+      letter-spacing: -0.52px;
+      text-align: left;
+    }
+
+    .Text1,
+    .Text2,
+    .Text3 {
+      height: 60.714px;
+      display: flex;
+      gap: 35.21px;
+      align-items: center;
+    }
+
+    #num1,
+    #num2,
+    #num3 {
+      font-family: Pretendard, sans-serif;
+      font-size: 29.143px;
+      font-weight: 700;
+      line-height: 38.857px;
+      letter-spacing: -0.583px;
+    }
+
+    #num1 {
+      color: #FF4035;
+    }
+
+    #num2 {
+      color: #ff9a05;
+    }
+
+    #num3 {
+      color: #32CC58;
+    }
+
+    .num1_cir,
+    .num2_cir,
+    .num3_cir {
+      display: flex;
+      width: 60.714px;
+      height: 60.714px;
+      padding: 9.714px 21.857px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 29.75px;
+      box-sizing: border-box;
+    }
+
+    .num1_cir {
+      background: rgba(255, 64, 53, 0.15);
+    }
+
+    .num2_cir {
+      background: rgba(255, 154, 5, 0.20);
+    }
+
+    .num3_cir {
+      background: rgba(50, 204, 88, 0.20);
+    }
+
+    .startButton {
+      display: flex;
+      padding: 24.286px 48.571px;
+      justify-content: center;
+      align-items: center;
+      gap: 12.143px;
+      border-radius: 17px;
+      background: #5B59DE;
+      border: none;
+      margin: 100.57px auto 200.86px auto;
+    }
+
+    #startText {
+      color: #FFFFFF;
+      font-family: Pretendard, sans-serif;
+      font-size: 29.143px;
+      font-weight: 700;
+      line-height: 38.857px;
+      letter-spacing: -0.583px;
+    }
+
+    /* 태블릿 */
+    @media (max-width: 1024px) {
+      .box1 {
+        width: 90%;
+        height: auto;
+        margin-top: 100px;
+      }
+
+      .mainText {
+        font-size: 28px;
+      }
+
+      #Text1_t,
+      #Text2_t,
+      #Text3_t {
+        font-size: 22px;
+        line-height: 32px;
+      }
+
+      .num1_cir,
+      .num2_cir,
+      .num3_cir {
+        width: 50px;
+        height: 50px;
+        margin-left: 30px;
+      }
+
+      .startButton {
+        margin-top: 50px;
+        margin-bottom: 100px;
+      }
+
+      .headPhone_img {
+        width: 80px;
+        top: 10px;
+      }
+
+      .mike_img {
+        width: 120px;
+      }
+    }
+
+    /* 모바일 */
+    @media (max-width: 600px) {
+      .box1 {
+        width: 95%;
+        padding: 12px;
+        margin-top: 80px;
+      }
+
+      .mainText {
+        font-size: 24px;
+        margin: 24px 0;
+      }
+
+      #Text1_t,
+      #Text2_t,
+      #Text3_t {
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      .Text1,
+      .Text2,
+      .Text3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .num1_cir,
+      .num2_cir,
+      .num3_cir {
+        margin-left: 0;
+      }
+
+      .startButton {
+        width: 100%;
+        padding: 16px;
+        font-size: 20px;
+        margin: 40px 0;
+      }
+
+      #startText {
+        font-size: 20px;
+      }
+
+      .headPhone_img,
+      .mike_img {
+        display: none;
+      }
+    }

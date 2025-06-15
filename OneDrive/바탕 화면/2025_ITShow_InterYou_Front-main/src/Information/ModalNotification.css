@@ -1,0 +1,130 @@
+.modalOvelay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalMain {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 686.8649px;
+  height: 443.4054px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 47.892px 71.838px;
+  flex-direction: column;
+  gap: 14.966px;
+  border-radius: 35.919px;
+  background: white;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+}
+
+.alltext {
+  flex: 1 0 0;
+}
+
+.textbox1 {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  gap: 4px;
+  margin-top: 11.97px;
+  margin-bottom: 11.97px;
+}
+
+#text1,
+#text2 {
+  font-family: var(--Family, Pretendard);
+  font-size: 20.953px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32.926px;
+  letter-spacing: -0.419px;
+}
+
+#text1 {
+  color: rgba(41, 42, 46, 0.7);
+}
+
+#text2 {
+  color: #FF4035;
+}
+
+#text3 {
+  width: 487.899px;
+  height: auto;
+  color: #000;
+  font-family: var(--Family, Pretendard);
+  font-size: 23.946px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 35.919px;
+  letter-spacing: -0.479px;
+}
+
+#checkBox {
+  width: 29.932px;
+  height: 29.932px;
+  margin-left: 10px;
+  border-radius: 5.6192px;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 30px;
+}
+
+#namePlace {
+  display: flex;
+  padding: 17.959px 23.946px;
+  justify-content: center;
+  align-items: center;
+  gap: 11.973px;
+  align-self: stretch;
+  border-radius: 11.973px;
+  border: 1.497px solid rgba(121, 124, 138, 0.12);
+  background: rgba(121, 124, 138, 0.08);
+  width: 538.7838px;
+  height: 71.9189px;
+  font-family: var(--Family, Pretendard);
+  font-size: 23.946px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 35.919px;
+  letter-spacing: -0.479px;
+  margin-bottom: 29.93px;
+}
+
+.testStartButton {
+  display: flex;
+  padding: 11.973px 179.595px;
+  align-items: center;
+  gap: 14.966px;
+  border-radius: 35.919px;
+  background: rgba(91, 89, 222, 1);
+  width: 543.1892px;
+  height: 65.9459px;
+  border: #5B59DE;
+}
+
+#testStartText {
+  color: rgba(255, 255, 255, 1);
+  font-family: var(--Family, Pretendard);
+  font-size: 29.932px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 41.905px;
+  letter-spacing: -0.599px;
+}
