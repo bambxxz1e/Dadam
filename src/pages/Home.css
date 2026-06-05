@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f6f7f4;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* 상단 영역 */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.top-bar h2 {
+  color: #2f4f4f;
+  font-size: 28px;
+}
+
+/* 로그아웃 버튼 */
+.logout-btn {
+  border: none;
+  background: #2f4f4f;
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  opacity: 0.9;
+}
+
+/* 검색창 */
+.search-bar {
+  width: 100%;
+
+  padding: 14px 18px;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  font-size: 16px;
+
+  margin-bottom: 30px;
+
+  outline: none;
+}
+
+.search-bar:focus {
+  border-color: #2f4f4f;
+}
+
+/* 카드 영역 */
+.tea-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  gap: 24px;
+}

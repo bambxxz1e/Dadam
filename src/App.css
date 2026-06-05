@@ -1,184 +1,204 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
+/* =========================================================
+   차 종류 선택 및 학습 페이지 스타일
+   - 클래스명을 기능별로 명확하게 작성해 협업 시 이해하기 쉽게 한다.
+   - 차분하고 깔끔한 분위기 + 모바일 반응형으로 작성한다.
+   ========================================================= */
+
+/* index.css 의 데모용 #root 제약(고정 1126px, 가운데 정렬, 테두리)을
+   학습 페이지 레이아웃에 맞게 덮어쓴다. */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
+  border-inline: none;
+}
+
+/* 전체 페이지 컨테이너 */
+.tea-learning-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  box-sizing: border-box;
+}
+
+/* 페이지 제목 */
+.tea-learning-title {
+  font-size: 32px;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+/* ---------------- 검색 영역 ---------------- */
+.tea-search {
   margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+.tea-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: var(--bg, #fff);
+  color: var(--text-h, #222);
 }
 
-#center {
+.tea-search-input:focus {
+  outline: none;
+  border-color: #5b8266;
+  box-shadow: 0 0 0 3px rgba(91, 130, 102, 0.15);
+}
+
+/* ---------------- 본문 레이아웃 ---------------- */
+/* 데스크탑: 차 목록(좌) + 상세 정보(우) 2단 구성 */
+.tea-learning-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---------------- 차 목록 / 카드 ---------------- */
+.tea-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* 카드는 클릭 가능한 버튼이다. 기본 버튼 스타일을 초기화한다. */
+.tea-card {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
+  gap: 6px;
   text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  padding: 16px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 12px;
+  background: var(--bg, #fff);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.05s;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.tea-card:hover {
+  border-color: #5b8266;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
+.tea-card:active {
+  transform: translateY(1px);
+}
+
+/* 선택된 카드 강조: 테두리 + 배경색으로 구분 */
+.tea-card-selected {
+  border-color: #5b8266;
+  border-width: 2px;
+  background: rgba(91, 130, 102, 0.1);
+}
+
+.tea-card-name {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-h, #1a1a1a);
+}
+
+.tea-card-description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text, #666);
+}
+
+/* 검색 결과 없음 안내 문구 */
+.tea-empty-result {
+  padding: 24px;
+  text-align: center;
+  color: var(--text, #888);
+}
+
+/* ---------------- 상세 정보 ---------------- */
+.tea-detail {
+  padding: 24px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 12px;
+  background: var(--bg, #fff);
+}
+
+/* 선택된 차가 없을 때의 안내 박스 */
+.tea-detail-empty {
   display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  color: var(--text, #888);
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.tea-detail-name {
+  margin: 0 0 8px;
+  font-size: 24px;
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
+.tea-detail-description {
+  margin: 0 0 20px;
+  color: var(--text, #666);
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+/* 항목 목록 (물온도/우림시간/맛/향) */
+.tea-detail-list {
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tea-detail-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border, #eee);
+}
+
+.tea-detail-item dt {
+  font-weight: 600;
+  color: var(--text-h, #333);
+  flex-shrink: 0;
+}
+
+.tea-detail-item dd {
+  margin: 0;
+  text-align: right;
+  color: var(--text, #555);
+}
+
+/* 초보자 팁 강조 박스 */
+.tea-detail-tip {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(91, 130, 102, 0.1);
+}
+
+.tea-detail-tip strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #4a6b54;
+}
+
+.tea-detail-tip p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-h, #333);
+}
+
+/* ---------------- 반응형 (모바일) ---------------- */
+@media (max-width: 720px) {
+  .tea-learning-body {
+    /* 모바일에서는 목록과 상세 정보를 위아래로 쌓는다. */
+    grid-template-columns: 1fr;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+  .tea-learning-title {
+    font-size: 26px;
   }
 }
