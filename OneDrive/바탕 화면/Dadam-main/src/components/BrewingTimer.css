@@ -1,0 +1,167 @@
+.brewing-timer {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.timer-title {
+  font-size: 1.5rem;
+  color: #3d2b1f;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* 차 선택 버튼 */
+.tea-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.tea-btn {
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--tea-color, #ccc);
+  border-radius: 999px;
+  background: transparent;
+  color: #3d2b1f;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tea-btn.active {
+  background: var(--tea-color, #ccc);
+  color: #fff;
+}
+
+.tea-btn:hover:not(.active) {
+  background: color-mix(in srgb, var(--tea-color, #ccc) 15%, transparent);
+}
+
+/* 차 정보 */
+.tea-info {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  font-size: 0.85rem;
+  color: #7a6152;
+  margin-bottom: 1.8rem;
+}
+
+/* 원형 타이머 */
+.timer-circle-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 1.8rem;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.timer-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.timer-time {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #3d2b1f;
+  letter-spacing: 0.05em;
+}
+
+.timer-done {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #7BAE7F;
+}
+
+.timer-label {
+  font-size: 0.8rem;
+  color: #a08c7e;
+}
+
+/* 컨트롤 버튼 */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.ctrl-btn {
+  padding: 0.65rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.ctrl-btn:active {
+  transform: scale(0.97);
+}
+
+.ctrl-btn.reset {
+  background: #f0e9e0;
+  color: #7a6152;
+}
+
+.ctrl-btn.main {
+  background: var(--tea-color, #7BAE7F);
+  color: #fff;
+  min-width: 110px;
+}
+
+.ctrl-btn.main:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* 완료 메시지 */
+.done-message {
+  margin-top: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: #f9f5f0;
+  border-radius: 12px;
+  color: #3d2b1f;
+}
+
+.done-message p {
+  margin: 0.2rem 0;
+}
+
+.done-sub {
+  font-size: 0.85rem;
+  color: #a08c7e;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .tea-info {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .timer-circle-wrap {
+    width: 180px;
+    height: 180px;
+  }
+
+  .timer-time {
+    font-size: 2.2rem;
+  }
+}
