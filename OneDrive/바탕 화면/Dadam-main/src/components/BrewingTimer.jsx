@@ -8,9 +8,17 @@ function formatTime(seconds) {
   return `${m}:${s}`;
 }
 
+// Fix #7: SVG 반지름 상수화 — JSX와 계산식의 r값 일치 보장
+const RADIUS = 90;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
 export default function BrewingTimer() {
   const { state, dispatch, selectedTea, teaList } = useTea();
-  const { timeLeft, isRunning, isDone } = state;
+  const { timeLeft, isRunning } = state;
+
+  // Fix #5: isDone을 별도 state에서 파생값으로 변경 — 불일치 없음
+  const isDone = timeLeft === 0;
+
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -20,13 +28,17 @@ export default function BrewingTimer() {
       }, 1000);
     } else {
       clearInterval(intervalRef.current);
+      // Fix #2: 해제 후 null로 초기화 — stale ref 방지
+      intervalRef.current = null;
     }
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    };
   }, [isRunning, dispatch]);
 
-  const progress = 1 - timeLeft / selectedTea.brewTime;
-  const circumference = 2 * Math.PI * 90;
-  const strokeDashoffset = circumference * (1 - progress);
+  // Fix #7: (1 - (1 - x)) 이중 반전 제거 → circumference * timeLeft / brewTime
+  const strokeDashoffset = CIRCUMFERENCE * timeLeft / selectedTea.brewTime;
 
   return (
     <div className="brewing-timer">
@@ -54,18 +66,18 @@ export default function BrewingTimer() {
       <div className="timer-circle-wrap">
         <svg className="timer-svg" viewBox="0 0 200 200">
           <circle
-            cx="100" cy="100" r="90"
+            cx="100" cy="100" r={RADIUS}
             fill="none"
             stroke="#e8e0d5"
             strokeWidth="10"
           />
           <circle
-            cx="100" cy="100" r="90"
+            cx="100" cy="100" r={RADIUS}
             fill="none"
             stroke={selectedTea.color}
             strokeWidth="10"
             strokeLinecap="round"
-            strokeDasharray={circumference}
+            strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={strokeDashoffset}
             transform="rotate(-90 100 100)"
             style={{ transition: 'stroke-dashoffset 0.8s ease' }}
