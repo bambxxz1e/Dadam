@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTea } from '../context/TeaContext';
 import './BrewingTimer.css';
 
@@ -10,16 +10,8 @@ function formatTime(seconds) {
 
 export default function BrewingTimer() {
   const { state, dispatch, selectedTea, teaList } = useTea();
-  const { timeLeft, isDone } = state;
-
-  // isRunning은 localStorage에 저장하지 않음 — 새로고침 시 항상 일시정지로 시작
-  const [isRunning, setIsRunning] = useState(false);
+  const { timeLeft, isRunning, isDone } = state;
   const intervalRef = useRef(null);
-
-  // 차 변경 시 타이머 멈춤
-  useEffect(() => {
-    setIsRunning(false);
-  }, [state.selectedTeaId]);
 
   useEffect(() => {
     if (isRunning) {
@@ -31,11 +23,6 @@ export default function BrewingTimer() {
     }
     return () => clearInterval(intervalRef.current);
   }, [isRunning, dispatch]);
-
-  // 완료되면 타이머 정지
-  useEffect(() => {
-    if (isDone) setIsRunning(false);
-  }, [isDone]);
 
   const progress = 1 - timeLeft / selectedTea.brewTime;
   const circumference = 2 * Math.PI * 90;
@@ -99,17 +86,14 @@ export default function BrewingTimer() {
       <div className="timer-controls">
         <button
           className="ctrl-btn reset"
-          onClick={() => {
-            setIsRunning(false);
-            dispatch({ type: 'RESET' });
-          }}
+          onClick={() => dispatch({ type: 'RESET' })}
         >
           초기화
         </button>
         <button
           className={`ctrl-btn main ${isRunning ? 'pause' : 'start'}`}
           style={{ '--tea-color': selectedTea.color }}
-          onClick={() => setIsRunning((v) => !v)}
+          onClick={() => dispatch({ type: 'SET_RUNNING', value: !isRunning })}
           disabled={isDone}
         >
           {isRunning ? '일시정지' : '시작'}
