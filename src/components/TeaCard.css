@@ -1,0 +1,33 @@
+.tea-card {
+  background: white;
+  width: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.tea-card:hover {
+  transform: translateY(-5px);
+}
+
+.tea-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.tea-card h3 {
+  padding: 5px 15px;
+}
+
+.tea-description {
+  padding: 0 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.tea-card p {
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
