@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import teaList from '../data/teaList';
+import { useTea } from '../context/TeaContext';
 import './BrewingTimer.css';
 
 function formatTime(seconds) {
@@ -9,47 +9,37 @@ function formatTime(seconds) {
 }
 
 export default function BrewingTimer() {
-  const [selectedTea, setSelectedTea] = useState(teaList[0]);
-  const [timeLeft, setTimeLeft] = useState(teaList[0].brewTime);
+  const { state, dispatch, selectedTea, teaList } = useTea();
+  const { timeLeft, isDone } = state;
+
+  // isRunning은 localStorage에 저장하지 않음 — 새로고침 시 항상 일시정지로 시작
   const [isRunning, setIsRunning] = useState(false);
-  const [isDone, setIsDone] = useState(false);
   const intervalRef = useRef(null);
 
+  // 차 변경 시 타이머 멈춤
   useEffect(() => {
-    setTimeLeft(selectedTea.brewTime);
     setIsRunning(false);
-    setIsDone(false);
-    clearInterval(intervalRef.current);
-  }, [selectedTea]);
+  }, [state.selectedTeaId]);
 
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(intervalRef.current);
-            setIsRunning(false);
-            setIsDone(true);
-            return 0;
-          }
-          return prev - 1;
-        });
+        dispatch({ type: 'TICK' });
       }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
     return () => clearInterval(intervalRef.current);
-  }, [isRunning]);
+  }, [isRunning, dispatch]);
+
+  // 완료되면 타이머 정지
+  useEffect(() => {
+    if (isDone) setIsRunning(false);
+  }, [isDone]);
 
   const progress = 1 - timeLeft / selectedTea.brewTime;
   const circumference = 2 * Math.PI * 90;
   const strokeDashoffset = circumference * (1 - progress);
-
-  function handleReset() {
-    setTimeLeft(selectedTea.brewTime);
-    setIsRunning(false);
-    setIsDone(false);
-  }
 
   return (
     <div className="brewing-timer">
@@ -61,7 +51,7 @@ export default function BrewingTimer() {
             key={tea.id}
             className={`tea-btn ${selectedTea.id === tea.id ? 'active' : ''}`}
             style={{ '--tea-color': tea.color }}
-            onClick={() => setSelectedTea(tea)}
+            onClick={() => dispatch({ type: 'SELECT_TEA', id: tea.id })}
           >
             {tea.name}
           </button>
@@ -107,7 +97,13 @@ export default function BrewingTimer() {
       </div>
 
       <div className="timer-controls">
-        <button className="ctrl-btn reset" onClick={handleReset}>
+        <button
+          className="ctrl-btn reset"
+          onClick={() => {
+            setIsRunning(false);
+            dispatch({ type: 'RESET' });
+          }}
+        >
           초기화
         </button>
         <button

@@ -1,11 +1,14 @@
+import { TeaProvider } from './context/TeaContext'
 import BrewingTimer from './components/BrewingTimer'
 import './App.css'
 
 function App() {
   return (
-    <main>
-      <BrewingTimer />
-    </main>
+    <TeaProvider>
+      <main>
+        <BrewingTimer />
+      </main>
+    </TeaProvider>
   )
 }
 
