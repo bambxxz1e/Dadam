@@ -1,0 +1,189 @@
+.tea-storage {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.storage-title {
+  font-size: 1.5rem;
+  color: #3d2b1f;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.storage-subtitle {
+  font-size: 0.85rem;
+  color: #a08c7e;
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+/* 차 선택 탭 */
+.tea-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.tea-tab {
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--tea-color, #ccc);
+  border-radius: 999px;
+  background: transparent;
+  color: #3d2b1f;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tea-tab.active {
+  background: var(--tea-color, #ccc);
+  color: #fff;
+}
+
+.tea-tab:hover:not(.active) {
+  background: color-mix(in srgb, var(--tea-color, #ccc) 15%, transparent);
+}
+
+/* 보관 카드 */
+.storage-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px solid color-mix(in srgb, var(--tea-color, #ccc) 30%, transparent);
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.storage-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.tea-color-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.storage-tea-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3d2b1f;
+  margin: 0;
+}
+
+.storage-tea-name-en {
+  font-size: 0.8rem;
+  color: #a08c7e;
+}
+
+.storage-period {
+  margin-left: auto;
+  text-align: right;
+}
+
+.period-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #a08c7e;
+}
+
+.period-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3d2b1f;
+}
+
+/* 요약 */
+.storage-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #faf7f2;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  color: #3d2b1f;
+  font-weight: 500;
+}
+
+.summary-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* 섹션 */
+.storage-section {
+  margin-bottom: 1.2rem;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #3d2b1f;
+  margin: 0 0 0.7rem;
+}
+
+/* 팁 목록 */
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: #5a4a3f;
+  line-height: 1.5;
+}
+
+.tip-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+/* 피해야 할 것 */
+.avoid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.avoid-tag {
+  padding: 0.3rem 0.8rem;
+  background: #fdf0ee;
+  border: 1px solid #f5c6be;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: #c0392b;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .storage-card-header {
+    flex-wrap: wrap;
+  }
+
+  .storage-period {
+    margin-left: 0;
+    text-align: left;
+    flex-basis: 100%;
+  }
+}
