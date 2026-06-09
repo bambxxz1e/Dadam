@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import brewingData from "../data/brewingData.js";
+import { teaList } from "../data/teaData.js";
 import BrewingProgress from "../components/BrewingProgress.jsx";
 import BrewingStepCard from "../components/BrewingStepCard.jsx";
+import StepTimer from "../components/StepTimer.jsx";
 import "./BrewingGuidePage.css";
 
 function BrewingGuidePage() {
@@ -14,6 +16,11 @@ function BrewingGuidePage() {
   const selectedTea = brewingData.find(
     (tea) => tea.id === Number(id)
   );
+
+  // 해당 차의 우림 시간 찾기
+  const selectedTeaBrewTime = teaList.find(
+    (tea) => tea.id === Number(id)
+  )?.brewTime || 0; // 우림 시간이 없는 경우 0으로 기본값 설정
 
   // 존재하지 않는 차 접근 시
   if (!selectedTea) {
@@ -83,7 +90,7 @@ function BrewingGuidePage() {
           </span>
 
           <span className="brewing-info-value">
-            {selectedTea.brewTime}초
+            {selectedTea.brewTime}
           </span>
         </div>
 
@@ -111,6 +118,17 @@ function BrewingGuidePage() {
         currentStep={currentStep}
         totalSteps={totalSteps}
       />
+
+      {/* 4단계(인덱스 3)일 때 타이머 노출 */}
+      {currentStep === 3 && (
+        <div className="step-timer-wrapper">
+          <h3>⏳ 최적의 맛을 위해 기다려주세요</h3>
+          <StepTimer 
+            brewTime={Number(selectedTeaBrewTime) || 0} 
+            onComplete={() => alert("차 우림이 완료되었습니다!")} 
+          />
+        </div>
+      )}
 
       {/* 단계 이동 버튼 */}
       <div className="guide-button-group">
